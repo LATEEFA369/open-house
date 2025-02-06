@@ -46,6 +46,7 @@ const pagesCtrl = require('./controllers/pages')
 const authCtrl = require('./controllers/auth')
 const vipCtrl = require('./controllers/vip')
 const listingsCtrl = require('./controllers/listings.controller')
+const Listing = require('./models/listing')
 
 // ROUTE HANDLERS
 app.get('/', pagesCtrl.home)
@@ -66,7 +67,9 @@ app.get('/listings/:listingId', listingsCtrl.show)
 app.delete('/listings/:userId/:listingId', listingsCtrl.deleteListing)
 app.get('/listings/:userId/:listingId/edit', listingsCtrl.edit)
 app.put('/listings/:userId/:listingId', listingsCtrl.update)
- 
+app.post('/listings/:listingId/favorited-by/:userId',listingsCtrl.addFavorite)
+app.delete('/listings/:listingId/favorited-by/:userId',listingsCtrl.removeFavorite)
+
 app.listen(port, () => { 
     console.log(`The express app is ready on port ${port}`)
 })
